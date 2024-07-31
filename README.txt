@@ -1,6 +1,6 @@
 About Project
 
-This is a Full Stack Project created using MDBBootstrap and PHP.
+This is a Full Stack Project created using MDBootstrap and PHP.
 
 The project contains two pages namely the login and the admin ui. With proper validations the login page asks a new user to register using name, email and password.
 After registering the user can now login to the admin ui page.
