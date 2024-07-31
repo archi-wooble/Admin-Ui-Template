@@ -4,3 +4,8 @@ js
 src
 index.html
 License.txt
+
+#other folders and files
+.gitignore
+.idea
+.DS_Store
