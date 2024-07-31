@@ -1,4 +1,4 @@
-#About Project
+About Project
 
 This is a Full Stack Project created using MDBBootstrap and PHP.
 
