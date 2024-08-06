@@ -597,22 +597,22 @@ $user_name = $_SESSION['user_name'];
                     var response = JSON.parse(xhr.responseText);
                     if (response.status === 'success') {
                         console.log("User deleted successfully:", response.message);
-                        showErrorModal("User deleted successfully:", response.message);
+                        alert("User deleted successfully:", response.message);
                         // Remove the row from the table
                         let deletedRow = document.getElementById('user-' + userId);
                         if (deletedRow) {
                             deletedRow.remove();
                         } else {
                             console.error("Error deleting user: Row not found.");
-                            showErrorModal("Error deleting user: Row not found.");
+                            alert("Error deleting user: Row not found.");
                         }
                     } else {
                         console.error("Error deleting user:", response.message);
-                        showErrorModal("Error deleting user: " + response.message);
+                        alert("Error deleting user: " + response.message);
                     }
                 } else {
                     console.error("Error deleting user:", xhr.statusText);
-                    showErrorModal("Error deleting user.");
+                    alert("Error deleting user.");
                 }
             };
             xhr.onerror = function () {
@@ -622,6 +622,8 @@ $user_name = $_SESSION['user_name'];
             // Send userId as JSON data
             xhr.send(JSON.stringify({userId: userId}));
         }
+        // This will reload the page from the cache
+        window.location.reload();
     }
 
 
