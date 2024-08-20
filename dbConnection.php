@@ -1,15 +1,15 @@
 <?php
-$servername = getenv('DB_SERVER'); // Get database server from environment variable
-$username = getenv('DB_USERNAME'); // Get database username from environment variable
-$password = getenv('DB_PASSWORD'); // Get database password from environment variable
-$dbname = getenv('DB_NAME'); // Get database name from environment variable
+$servername = "127.0.0.1"; // Replace with your MySQL server name
+$username = "root"; // Replace with your MySQL username
+$password = "password"; // Replace with your MySQL password
+$dbname = "exampledb"; // Replace with your MySQL database name
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-echo "Connected successfully";
+//if ($conn->connect_error) {
+//    echo "Connection failed: " . $conn->connect_error;
+//}
+//else{
+//    echo "Connected successfully";
+//}
 ?>

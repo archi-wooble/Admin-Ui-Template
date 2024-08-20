@@ -14,6 +14,12 @@ $name = $_POST['name'];
 $email = $_POST['email'];
 $password = $_POST['password'];
 
+// Validate fields
+if (empty($name) || empty($email) || empty($password)) {
+    echo "All fields are required.";
+    exit();
+}
+
 // Check if email already exists
 $sql = "SELECT * FROM admin_details WHERE email = ?";
 $stmt = $conn->prepare($sql);

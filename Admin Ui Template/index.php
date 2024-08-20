@@ -204,7 +204,7 @@ $user_name = $_SESSION['user_name'];
     </div>
     <!-- Log Out Button -->
     <div class="container logout-btn d-flex flex-column flex-sm-row justify-content-center justify-content-sm-between align-items-center align-items-sm-end my-5 mx-0">
-        <h4 class="mb-0 text-center text-sm-start">Welcome, You are now Lgged in as <?php echo htmlspecialchars($user_name); ?> !</h4>
+        <h4 class="mb-0 text-center text-sm-start">Welcome, You are now Logged in as <?php echo htmlspecialchars($user_name); ?> !</h4>
         <button type="button" class="btn btn-danger mt-2" onclick="logout()">Log Out</button>
     </div>
 
@@ -449,6 +449,8 @@ $user_name = $_SESSION['user_name'];
                 // Close the modal if using one
                 var modal = new bootstrap.Modal(document.getElementById('exampleModal'));
                 modal.hide();
+                // Refresh the page
+                window.location.reload();
             } else if (xhr.status === 409) {
                 // Conflict
                 showErrorModal(response.message || "User with this name already exists.");
@@ -598,13 +600,20 @@ $user_name = $_SESSION['user_name'];
                     if (response.status === 'success') {
                         console.log("User deleted successfully:", response.message);
                         alert("User deleted successfully:", response.message);
-                        // Remove the row from the table
+                            // Remove the row from the table
                         let deletedRow = document.getElementById('user-' + userId);
                         if (deletedRow) {
                             deletedRow.remove();
                         } else {
                             console.error("Error deleting user: Row not found.");
                             alert("Error deleting user: Row not found.");
+                            return; // Exit early
+                        }
+
+                        // Check if there are any rows left
+                        let tableBody = document.getElementById('table-body'); // Adjust this ID as needed
+                        if (tableBody && tableBody.children.length === 0) {
+                            alert("No matching results found.");
                         }
                     } else {
                         console.error("Error deleting user:", response.message);
@@ -617,7 +626,7 @@ $user_name = $_SESSION['user_name'];
             };
             xhr.onerror = function () {
                 console.error('Request failed.');
-                alert("Request failed.");
+                alert('Request failed.');
             };
             // Send userId as JSON data
             xhr.send(JSON.stringify({userId: userId}));
@@ -625,6 +634,7 @@ $user_name = $_SESSION['user_name'];
         // This will reload the page from the cache
         window.location.reload();
     }
+
 
 
     function updateEditImageLabel(input) {
